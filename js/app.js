@@ -9,11 +9,11 @@ let score = 0;
 let lastHole;
 let timeUp = false;
 
-function randomTime(min, max) {
+const randomTime = (min, max) => {
   return Math.round(Math.random() * (max - min) + min);
 }
 
-function randomHole(holes) {
+const randomHole = (holes) => {
   const idx = Math.floor(Math.random() * holes.length);
   const hole = holes[idx];
 
@@ -24,8 +24,8 @@ function randomHole(holes) {
   return hole;
 }
 
-function peep() {
-  const time = randomTime(1000, 2000);
+const peep = () =>{
+  const time = randomTime(400, 1000);
   const hole = randomHole(holes);
 
   hole.classList.add("up");
@@ -35,7 +35,9 @@ function peep() {
     if (!timeUp) peep();
   }, time);
 }
-function start() {
+
+
+const start = () => {
   score = 0;
   // scoreBoard.textContent = score;
   timeUp = false;
@@ -56,7 +58,7 @@ function start() {
   }, 10000);
 }
 
-function bonk(e) {
+const bonk = (e) => {
   if (!timeUp) {
     // scoreBoard.classList.add("add");
     score++;
