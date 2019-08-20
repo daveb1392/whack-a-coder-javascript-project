@@ -82,3 +82,10 @@ coders.forEach(coder => {
 });
 
 btnStart.addEventListener("click", start);
+
+
+
+// COMMENT FOR AARON:
+// time/score thing
+// create a variable "totalScore" starting with 10, increments when you whack a coder
+// when timer hits 0. show 'You lasted  "totalScore" seconds!' in score board 
