@@ -12,9 +12,7 @@ let lastHole;
 let timeUp = false;
 let increaseTime = 1;
 
-const state = {
-  gameTimer: 9
-};
+let gameTimer = 9;
 
 
 const peep = () => {
@@ -25,27 +23,27 @@ const peep = () => {
 
   setTimeout(() => {
     hole.classList.remove("up");
-    if (state.gameTimer) peep();
+    if (gameTimer) peep();
   }, time);
 };
 
 const start = () => {
-  state.gameTimer = 9
+  gameTimer = 9
   timeUp = false;
   peep();
 
   timerStarting(() => {
     timeUp = true;
-  }, state.gameTimer);
+  }, gameTimer);
 };
 
 function startTimer(display) {
-  const gameTimer = setInterval(function() {
-    display.textContent = `${state.gameTimer}`;
-    state.gameTimer = --state.gameTimer;
-    if (state.gameTimer < 0) {
+  const gameTimerShow = setInterval(function() {
+    display.textContent = `${gameTimer}`;
+    gameTimer = --gameTimer;
+    if (gameTimer < 0) {
       console.log("END!");
-      clearInterval(gameTimer);
+      clearInterval(gameTimerShow);
     }
   }, 1000);
 }
@@ -56,7 +54,7 @@ let timerStarting = () => {
 };
 
 const bonk = e => {
-  state.gameTimer = state.gameTimer + increaseTime;
+  gameTimer = gameTimer + increaseTime;
   console.log("GUACAMOLE!!!!");
 };
 
