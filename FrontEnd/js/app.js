@@ -28,7 +28,6 @@ const peep = () => {
 };
 
 const start = () => {
-
   gameTimer = 9;
   timeUp = false;
   peep();
@@ -36,7 +35,6 @@ const start = () => {
   timerStarting(() => {
     timeUp = true;
   }, gameTimer);
-  
 };
 
 let timerStarting = () => {
@@ -45,14 +43,12 @@ let timerStarting = () => {
   startTimer(display, startTime);
 };
 
-
 const startTimer = (display, startTime) => {
   const gameTimerShow = setInterval(function() {
     display.textContent = `${gameTimer}`;
     gameTimer = --gameTimer;
     startTime;
     if (gameTimer < 0) {
-     
       let finalTime = Date.now() - startTime; //we will pass final time to the post function.
       console.log(finalTime);
       clearInterval(gameTimerShow);
@@ -61,10 +57,7 @@ const startTimer = (display, startTime) => {
   }, 1000);
 };
 
-
 // let finalTime = Date.now();
-
-
 
 const bonk = e => {
   gameTimer = gameTimer + increaseTime;
@@ -98,21 +91,17 @@ coders.forEach(coder => {
   coder.addEventListener("click", bonk);
 });
 
+const startScreen = () => {
+  document.querySelector(".start-screen");
+};
 
-const startScreen = () =>{
-   document.querySelector(".start-screen");
-   
-}
+btnStart.addEventListener("click", () => {
+  document.querySelector(".start-screen").style.display = "none";
+  start();
 
-btnStart.addEventListener("click",() => {
-  
-document.querySelector(".start-screen").style.display = "none";
-  start(); 
-   
   // startScreen.hide();
   // splashScreen.hide();
- 
- }) // here I have to add the timer start
+}); // here I have to add the timer start
 
 //timer does not need to be on the page
 

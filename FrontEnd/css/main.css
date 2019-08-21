@@ -15,9 +15,22 @@ body {
   height: 100vh;
 }
 
-.title {
+.start-screen-title {
+  color: #05b5eb;
+  font-weight: bold;
   text-align: center;
-  font-size: 200%;
+  font-size: 120%;
+  padding-top: 20px;
+  margin: 0.5rem 0;
+  font-family: arial;
+}
+
+.start-screen-body {
+  color: #05b5eb;
+  font-weight: bold;
+  text-align: center;
+  font-size: 120%;
+  padding-top: 20px;
   margin: 0.5rem 0;
   font-family: arial;
 }
@@ -30,11 +43,14 @@ body {
   right: 0;
   background: rgba(0, 0, 0, 0.3);
   z-index: 999;
+  opacity: 0.95;
+
 }
 
 .start-screen .splash-screen {
-  width: 300px;
-  height: 360px;
+  width: 500px;
+  padding: 10px;
+  height: 400px;
   background: #ffd527;
   position: absolute;
   top: 50%;
@@ -42,6 +58,14 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   transform: translate(-50%, -50%);
+  
+}
+
+.splash-screen-text p {
+  font-family: arial;
+  font-weight: bold;
+  color: #cc0000;
+  font-size: 18px;
 }
 
 .start-screen.hide {
@@ -59,9 +83,12 @@ body {
 }
 
 #button {
+  font-weight: bold;
+  bottom: 30px;
+  margin-top: 25px;
   text-align: center;
   width: 20%;
-  height: 51px;
+  height: 50px;
   text-transform: uppercase;
   color: #fff;
   padding: 0.5rem 0.8rem;
@@ -136,7 +163,7 @@ body {
 }
 
 .coder {
-  background: url(../imgs/weirdgeek.svg) bottom center no-repeat;
+  background: url(../imgs/mani.svg) bottom center no-repeat;
   background-size: 60%;
   position: absolute;
   top: 100%;
@@ -177,7 +204,7 @@ h1 { font-family:'Changa One', cursive;
 }
 
 100% {
-  transform:translateY(-20%);
+  transform:translateY(-5%);
 }
 100% {
   text-shadow: 0 1px 0px #CCC,
