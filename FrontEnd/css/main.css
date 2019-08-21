@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -18,7 +19,7 @@ body {
   text-align: center;
   font-size: 200%;
   margin: 0.5rem 0;
-  font-family: fantasy
+  font-family: arial;
 }
 
 .start-screen {
@@ -57,14 +58,10 @@ body {
   margin: 1rem 0;
 }
 
-.button {
+#button {
   text-align: center;
-  width: 100%;
+  width: 20%;
   height: 51px;
-  margin: 1rem 0;
-}
-
-.button button {
   text-transform: uppercase;
   color: #fff;
   padding: 0.5rem 0.8rem;
@@ -77,15 +74,15 @@ body {
   opacity: 1;
 }
 
-.button button:hover {
+#button button:hover {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
 }
 
-.button button:focus {
+#button button:focus {
   outline: 0;
 }
 
-.button button.hide {
+#button button.hide {
   opacity: 0;
 }
 
@@ -151,3 +148,45 @@ body {
 .desk.up .coder {
   top: 0;
 }
+
+/* animated title start*/
+
+h1 { font-family:'Changa One', cursive;
+  color: #FFF;
+  font-size: 60px;
+  text-align: center;
+  padding-top: 125px;
+  padding-bottom: 80px;
+  text-shadow: 0 7px 0 #CCC,
+             0 10px 30px #5E5E5E;
+ -webkit-animation: bounce .4s infinite alternate;
+
+  text-shadow: 0 1px 0px #CCC,
+               0 2px 0px #CCC,
+               0 3px 0px #CCC,
+               0 4px 0px #CCC,
+               0 5px 0px #CCC,
+               0 6px 0px #CCC,
+               0 10px 10px rgba(0, 0, 0, .8);
+
+}
+
+@-webkit-keyframes bounce {
+0% {
+  transform:translateY(0%);
+}
+
+100% {
+  transform:translateY(-20%);
+}
+100% {
+  text-shadow: 0 1px 0px #CCC,
+               0 2px 0px #CCC,
+               0 3px 0px #CCC,
+               0 4px 0px #CCC,
+               0 5px 0px #CCC,
+               0 6px 0px #CCC,
+               0 20px 20px rgba(0, 0, 0, .3);
+}
+
+/* animated title end */
