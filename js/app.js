@@ -1,5 +1,5 @@
-const holes = document.querySelectorAll(".hole");
-const coders = document.querySelectorAll(".mole");
+const desks = document.querySelectorAll(".desk");
+const coders = document.querySelectorAll(".coder");
 const btnStart = document.querySelector("button");
 btnStart.className = "btnStr"
 
@@ -8,7 +8,7 @@ const showScore = document.querySelector(".show-score");
 let currentScore = document.querySelector(".class");
 
 let score = 0;
-let lastHole;
+let lastDesk;
 let timeUp = false;
 let increaseTime = 1;
 
@@ -17,12 +17,12 @@ let gameTimer = 9;
 
 const peep = () => {
   const time = randomTime(400, 1000);
-  const hole = randomHole(holes);
+  const desk = randomDesk(desks);
 
-  hole.classList.add("up");
+  desk.classList.add("up");
 
   setTimeout(() => {
-    hole.classList.remove("up");
+    desk.classList.remove("up");
     if (gameTimer) peep();
   }, time);
 };
@@ -55,22 +55,22 @@ let timerStarting = () => {
 
 const bonk = e => {
   gameTimer = gameTimer + increaseTime;
-  console.log("GUACAMOLE!!!!");
+  console.log("GUACAcoder!!!!");
 };
 
 const randomTime = (min, max) => {
   return Math.round(Math.random() * (max - min) + min);
 };
 
-const randomHole = holes => {
-  const idx = Math.floor(Math.random() * holes.length);
-  const hole = holes[idx];
+const randomDesk = desks => {
+  const idx = Math.floor(Math.random() * desks.length);
+  const desk = desks[idx];
 
-  if (hole === lastHole) {
-    return randomHole(holes);
+  if (desk === lastDesk) {
+    return randomDesk(desks);
   }
-  lastHole = hole;
-  return hole;
+  lastDesk = desk;
+  return desk;
 };
 
 
