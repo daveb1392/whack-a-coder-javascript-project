@@ -16,7 +16,7 @@ let gameTimer = 9;
 
 
 const peep = () => {
-  const time = randomTime(400, 1000);
+  const time = randomTime(500, 1000);
   const desk = randomDesk(desks);
 
   desk.classList.add("up");
@@ -73,13 +73,21 @@ const randomDesk = desks => {
   return desk;
 };
 
+const scoreBoard = () => {
+    fetch("http://localhost:3000/scores")
+    .then(resp => resp.json())
+    .then(resp => console.log(resp));
+}
 
+//create a timer on the event listner start. 
 
 coders.forEach(coder => {
   coder.addEventListener("click", bonk);
 });
 
 btnStart.addEventListener("click", start);
+
+
 
 
 
