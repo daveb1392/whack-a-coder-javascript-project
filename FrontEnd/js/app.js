@@ -1,7 +1,7 @@
 const desks = document.querySelectorAll(".desk");
 const coders = document.querySelectorAll(".coder");
 const btnStart = document.querySelector("button");
-btnStart.className = "btnStr"
+btnStart.className = "btnStr";
 
 const startScreen = document.querySelector(".start-screen");
 const showScore = document.querySelector(".show-score");
@@ -13,7 +13,6 @@ let timeUp = false;
 let increaseTime = 1;
 
 let gameTimer = 9;
-
 
 const peep = () => {
   const time = randomTime(500, 1000);
@@ -28,7 +27,7 @@ const peep = () => {
 };
 
 const start = () => {
-  gameTimer = 9
+  gameTimer = 9;
   timeUp = false;
   peep();
 
@@ -37,19 +36,26 @@ const start = () => {
   }, gameTimer);
 };
 
-function startTimer(display) {
+const startTimer = display => {
   const gameTimerShow = setInterval(function() {
     display.textContent = `${gameTimer}`;
     gameTimer = --gameTimer;
+    startTime;
     if (gameTimer < 0) {
       console.log("END!");
+      let finalTime = Date.now() - startTime; //we will pass final time to the post function.
       clearInterval(gameTimerShow);
+      debugger;
     }
   }, 1000);
-}
+};
+
+let startTime = Date.now();
+// let finalTime = Date.now();
+
 
 let timerStarting = () => {
-    display = document.querySelector("#time");
+  display = document.querySelector("#time");
   startTimer(display);
 };
 
@@ -74,24 +80,22 @@ const randomDesk = desks => {
 };
 
 const scoreBoard = () => {
-    fetch("http://localhost:3000/scores")
+  fetch("http://localhost:3000/scores")
     .then(resp => resp.json())
     .then(resp => console.log(resp));
-}
+};
 
-//create a timer on the event listner start. 
+//create a timer on the event listner start.
 
 coders.forEach(coder => {
   coder.addEventListener("click", bonk);
 });
 
-btnStart.addEventListener("click", start);
+btnStart.addEventListener("click", start); // here I have to add the timer start
 
-
-
-
+//timer does not need to be on the page
 
 // COMMENT FOR AARON:
 // time/score thing
 // create a variable "totalScore" starting with 10, increments when you whack a coder
-// when timer hits 0. show 'You lasted  "totalScore" seconds!' in score board 
+// when timer hits 0. show 'You lasted  "totalScore" seconds!' in score board
