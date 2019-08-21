@@ -1,19 +1,70 @@
 const holes = document.querySelectorAll(".hole");
-const moles = document.querySelectorAll(".mole");
+const coders = document.querySelectorAll(".mole");
 const btnStart = document.querySelector("button");
+btnStart.className = "btnStr"
 
 const startScreen = document.querySelector(".start-screen");
 const showScore = document.querySelector(".show-score");
+let currentScore = document.querySelector(".class");
 
 let score = 0;
 let lastHole;
 let timeUp = false;
+let increaseTime = 1;
 
-function randomTime(min, max) {
-  return Math.round(Math.random() * (max - min) + min);
+const state = {
+  gameTimer: 9
+};
+
+
+const peep = () => {
+  const time = randomTime(400, 1000);
+  const hole = randomHole(holes);
+
+  hole.classList.add("up");
+
+  setTimeout(() => {
+    hole.classList.remove("up");
+    if (state.gameTimer) peep();
+  }, time);
+};
+
+const start = () => {
+  state.gameTimer = 9
+  timeUp = false;
+  peep();
+
+  timerStarting(() => {
+    timeUp = true;
+  }, state.gameTimer);
+};
+
+function startTimer(display) {
+  const gameTimer = setInterval(function() {
+    display.textContent = `${state.gameTimer}`;
+    state.gameTimer = --state.gameTimer;
+    if (state.gameTimer < 0) {
+      console.log("END!");
+      clearInterval(gameTimer);
+    }
+  }, 1000);
 }
 
-function randomHole(holes) {
+let timerStarting = () => {
+    display = document.querySelector("#time");
+  startTimer(display);
+};
+
+const bonk = e => {
+  state.gameTimer = state.gameTimer + increaseTime;
+  console.log("GUACAMOLE!!!!");
+};
+
+const randomTime = (min, max) => {
+  return Math.round(Math.random() * (max - min) + min);
+};
+
+const randomHole = holes => {
   const idx = Math.floor(Math.random() * holes.length);
   const hole = holes[idx];
 
@@ -22,50 +73,19 @@ function randomHole(holes) {
   }
   lastHole = hole;
   return hole;
-}
+};
 
-function peep() {
-  const time = randomTime(1000, 2000);
-  const hole = randomHole(holes);
 
-  hole.classList.add("up");
 
-  setTimeout(() => {
-    hole.classList.remove("up");
-    if (!timeUp) peep();
-  }, time);
-}
-function start() {
-  score = 0;
-  // scoreBoard.textContent = score;
-  timeUp = false;
-  // scoreBoard.classList.remove("add");
-  startScreen.classList.add("hide");
-
-  peep();
-
-  setTimeout(() => {
-    timeUp = true;
-    startScreen.classList.remove("hide");
-
-    if (score > 0) {
-      showScore.classList.add("show");
-      const message = "Your score: " + score + (score >= 10 ? " GREAT!" : "");
-      showScore.textContent = message;
-    }
-  }, 10000);
-}
-
-function bonk(e) {
-  if (!timeUp) {
-    // scoreBoard.classList.add("add");
-    score++;
-    // scoreBoard.textContent = score;
-  }
-}
-
-moles.forEach(mole => {
-  mole.addEventListener("click", bonk);
+coders.forEach(coder => {
+  coder.addEventListener("click", bonk);
 });
 
 btnStart.addEventListener("click", start);
+
+
+
+// COMMENT FOR AARON:
+// time/score thing
+// create a variable "totalScore" starting with 10, increments when you whack a coder
+// when timer hits 0. show 'You lasted  "totalScore" seconds!' in score board 

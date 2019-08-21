@@ -9,15 +9,16 @@
 }
 
 body {
-  background: #fff19e;
+  background: #05b5eb;
   width: 100%;
   height: 100vh;
 }
 
-h1 {
+.title {
   text-align: center;
   font-size: 200%;
   margin: 0.5rem 0;
+  font-family: fantasy
 }
 
 .start-screen {
@@ -127,18 +128,18 @@ h1 {
 
 .hole:after {
   display: block;
-  background: url(../imgs/dirt.svg) bottom center no-repeat;
+  background: url(../imgs/desk.svg) bottom center no-repeat;
   background-size: contain;
   content: "";
   width: 100%;
-  height: 70px;
+  height: 90px;
   position: absolute;
   z-index: 2;
-  bottom: -30px;
+  bottom: -50px;
 }
 
 .mole {
-  background: url(../imgs/mole.svg) bottom center no-repeat;
+  background: url(../imgs/weirdgeek.svg) bottom center no-repeat;
   background-size: 60%;
   position: absolute;
   top: 100%;
