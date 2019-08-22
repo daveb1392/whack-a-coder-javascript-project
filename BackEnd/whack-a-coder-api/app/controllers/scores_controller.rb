@@ -5,5 +5,10 @@ class ScoresController < ApplicationController
         render json: scores
     end
 
+    def endgame
+        User.create()
+    end 
+
+
 
 end
