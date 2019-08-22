@@ -50,7 +50,7 @@ body {
 .start-screen .splash-screen {
   width: 500px;
   padding: 10px;
-  height: 400px;
+  height: 450px;
   background: #ffd527;
   position: absolute;
   top: 50%;
@@ -156,10 +156,10 @@ body {
   background-size: contain;
   content: "";
   width: 100%;
-  height: 90px;
+  height: 180px;
   position: absolute;
   z-index: 2;
-  bottom: -50px;
+  bottom: -70px;
 }
 
 .coder {

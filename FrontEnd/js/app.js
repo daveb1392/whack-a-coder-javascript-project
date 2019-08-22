@@ -1,6 +1,7 @@
 const desks = document.querySelectorAll(".desk");
 const coders = document.querySelectorAll(".coder");
-const btnStart = document.querySelector("button");
+const btnStart = document.querySelector("#button");
+const usernameForm = document.querySelector("#usernameForm");
 btnStart.className = "btnStr";
 
 // const startScreen = document.querySelector(".start-screen");
@@ -95,10 +96,11 @@ const startScreen = () => {
   document.querySelector(".start-screen");
 };
 
-btnStart.addEventListener("click", () => {
+usernameForm.addEventListener("submit", e => {
+  e.preventDefault();
   document.querySelector(".start-screen").style.display = "none";
+  const username = document.querySelector("#username").value;
   start();
-
   // startScreen.hide();
   // splashScreen.hide();
 }); // here I have to add the timer start
