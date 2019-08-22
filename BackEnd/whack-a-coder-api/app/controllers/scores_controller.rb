@@ -11,7 +11,7 @@ class ScoresController < ApplicationController
         # user = User.create(strong_params)
         user = User.create(strong_params[:user])
         score = Score.create(time: strong_params["score"]["time"] , user: user)
-        byebug
+
         render json: score, includes: user
     end
 

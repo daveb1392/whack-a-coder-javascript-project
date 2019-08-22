@@ -31,7 +31,7 @@ const peep = () => {
 
 const start = () => { 
 
-  gameTimer = 2; 
+  gameTimer = 7; 
   timeUp = false; 
   peep(); 
 
@@ -51,12 +51,14 @@ const startTimer = (display, startTime ) => {
     gameTimer = --gameTimer;
     startTime;
     if (gameTimer < 0) {
-      let finalTime = Date.now() - startTime; //we will pass final time to the post function.
+      let finalTime = (Date.now() - startTime)/1000; //we will pass final time to the post function.
       console.log(finalTime);
       clearInterval(gameTimerShow);
       const finalScore = {username: eventListener.target.username.value, time: finalTime}
       userFetchPost(finalScore);
+      getScores();
     }
+    
     // scoreFetchPost(finalScore)
    
     
@@ -107,6 +109,53 @@ const userFetchPost = (finalScore) => {
 };
 
 
+const getScores = () => {
+  return fetch("http://localhost:3000/scores/")
+    .then(resp => resp.json())
+    .then(scoreArray =>{
+      scoreIterator(scoreArray);
+    })
+};
+
+const scoreIterator = scoreArray => {
+  debugger
+   sortedArray = scoreArray.map(score => score.time);
+   sortedArray.forEach(score => {
+     renderScores(score)
+   })
+  // let sortedScores = scoreArray.sort()
+  // sortedScores.forEach(score => {
+  //   renderScores(score)
+  // });
+}
+
+const board = document.querySelector("#leaderboard")
+
+const renderScores = (score) => {
+  // const tableScore = document.querySelector("#score")
+  // const scoreRow = document.createElement("tr")
+  // const tableUser = document.createElement("td")
+  // const tableTime = document.createElement("td")
+  const div = document.createElement("div")
+  const ul = document.createElement("ul")
+  const li = document.createElement("li")
+
+  li.innerText = score
+  ul.appendChild(li)
+  div.appendChild(ul)
+  board.appendChild(div)
+}
+
+
+
+
+// tableUser.innerText = score.user_id;
+// tableTime.innerText = score.time;
+
+// scoreRow.append(tableUser, tableTime)
+// tableScore.append(scoreRow)
+// startTimer(score)
+ 
 
 // function to POST score with associated user_id to the database
 // const scoreFetchPost = score => {
@@ -138,7 +187,9 @@ usernameForm.addEventListener("submit", e => {
   document.querySelector(".start-screen").style.display = "none";
   
   eventListener = e
+  usernameForm.reset()
   start();
+  // end();
   // startScreen.hide();
   // splashScreen.hide();
 }); // here I have to add the timer start
