@@ -2,20 +2,36 @@ const desks = document.querySelectorAll(".desk");
 const coders = document.querySelectorAll(".coder");
 const btnStart = document.querySelector("#button");
 const usernameForm = document.querySelector("#usernameForm");
-btnStart.className = "btnStr";
+
+
 
 // const startScreen = document.querySelector(".start-screen");
+=======
+const inputField = document.querySelector("#username");
+btnStart.className = "btnStr";
+
+
 const showScore = document.querySelector(".show-score");
 let currentScore = document.querySelector(".class");
 let splashScreen = document.querySelector(".splash-screen");
 let eventListener = null;
+
+
+
+const board = document.querySelector("#leaderboard");
+const div = document.createElement("div");
+const ol = document.createElement("ol");
+
 
 let score = 0;
 let lastDesk;
 let timeUp = false;
 let increaseTime = 1;
 
-let gameTimer = 2;
+
+
+// let gameTimer = 2;
+
 
 const peep = () => {
   const time = randomTime(500, 1000);
@@ -30,7 +46,11 @@ const peep = () => {
 };
 
 const start = () => {
-  gameTimer = 7;
+
+
+
+  gameTimer = 4;
+
   timeUp = false;
   peep();
 
@@ -49,7 +69,11 @@ const startTimer = (display, startTime) => {
     gameTimer = --gameTimer;
     startTime;
     if (gameTimer < 0) {
-      let finalTime = (Date.now() - startTime) / 1000; //we will pass final time to the post function.
+
+
+
+      let finalTime = (Date.now() - startTime) / 1000;
+
       console.log(finalTime);
       clearInterval(gameTimerShow);
       const finalScore = {
@@ -57,18 +81,21 @@ const startTimer = (display, startTime) => {
         time: finalTime
       };
       userFetchPost(finalScore);
+      document.querySelector(".start-screen").style.display = "block";
       getScores();
     }
 
-    // scoreFetchPost(finalScore)
+
+
+
+
   }, 1000);
 };
 
-// let finalTime = Date.now();
-
 const bonk = e => {
   gameTimer = gameTimer + increaseTime;
-  console.log("GUACAcoder!!!!");
+  playSound()
+  console.log("GUACACODER!!!!");
 };
 
 const randomTime = (min, max) => {
@@ -86,12 +113,14 @@ const randomDesk = desks => {
   return desk;
 };
 
-// k
-
 // function to POST username to the database
-// function postData(url = 'http://localhost:3000/users', data = {}) {
+
+
+
+
+
 const userFetchPost = finalScore => {
-  // debugger
+
   fetch("http://localhost:3000/scores", {
     method: "POST",
     headers: {
@@ -101,7 +130,11 @@ const userFetchPost = finalScore => {
     body: JSON.stringify({
       game_params: {
         user: { username: finalScore.username },
-        score: { time: finalScore.time } //input info
+
+
+
+        score: { time: finalScore.time }
+
       }
     })
   })
@@ -118,54 +151,27 @@ const getScores = () => {
 };
 
 const scoreIterator = scoreArray => {
-  debugger;
-  sortedArray = scoreArray.map(score => score.time);
-  sortedArray.forEach(score => {
-    renderScores(score);
+
+
+  timeArray = scoreArray.map(score => score.time);
+  // this method sorts the numbers into descending order, because javascript for SOME REASON doesn't like to just "sort" the numbers....
+  sortedArray = timeArray.sort(function(a, b) {
+    return b - a;
   });
-  // let sortedScores = scoreArray.sort()
-  // sortedScores.forEach(score => {
-  //   renderScores(score)
-  // });
+  topTen = sortedArray.slice(0, 10);
+  topTen.forEach(score => {
+    renderScore(score);
+  });
 };
 
-const board = document.querySelector("#leaderboard");
-
-const renderScores = score => {
-  // const tableScore = document.querySelector("#score")
-  // const scoreRow = document.createElement("tr")
-  // const tableUser = document.createElement("td")
-  // const tableTime = document.createElement("td")
-  const div = document.createElement("div");
-  const ul = document.createElement("ul");
+const renderScore = score => {
   const li = document.createElement("li");
-
   li.innerText = score;
-  ul.appendChild(li);
-  div.appendChild(ul);
+  ol.appendChild(li);
+  div.appendChild(ol);
   board.appendChild(div);
 };
 
-// tableUser.innerText = score.user_id;
-// tableTime.innerText = score.time;
-
-// scoreRow.append(tableUser, tableTime)
-// tableScore.append(scoreRow)
-// startTimer(score)
-
-// function to POST score with associated user_id to the database
-// const scoreFetchPost = score => {
-//   fetch("http://localhost:3000/scores", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "aplication/json"
-//     },
-//     body: JSON.stringify({
-//       user_id: `${current_user.id}`, //params info
-//       time: `${score}`
-//     })
-//   });
-// };
 
 //create a timer on the event listner start.
 
@@ -177,21 +183,28 @@ const startScreen = () => {
   document.querySelector(".start-screen");
 };
 
+inputField.addEventListener("click", e => {
+  inputField.value = "";
+});
+
 usernameForm.addEventListener("submit", e => {
   e.preventDefault();
   document.querySelector(".start-screen").style.display = "none";
 
+
   eventListener = e;
-  usernameForm.reset();
+  ol.innerHTML = "";
+  // usernameForm.reset();
+
   start();
-  // end();
-  // startScreen.hide();
-  // splashScreen.hide();
-}); // here I have to add the timer start
 
-//timer does not need to be on the page
+});;
+}); 
 
-// COMMENT FOR AARON:
-// time/score thing
-// create a variable "totalScore" starting with 10, increments when you whack a coder
-// when timer hits 0. show 'You lasted  "totalScore" seconds!' in score board
+
+
+
+ const playSound = () => {
+          let sound = document.querySelector("audio");
+          sound.play()
+      };
