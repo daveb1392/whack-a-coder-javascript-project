@@ -69,6 +69,7 @@ const startTimer = (display, startTime) => {
 
 const bonk = e => {
   gameTimer = gameTimer + increaseTime;
+  playSound()
   console.log("GUACACODER!!!!");
 };
 
@@ -155,4 +156,14 @@ usernameForm.addEventListener("submit", e => {
   ol.innerHTML = "";
   // usernameForm.reset();
   start();
-});
+
+});;
+}); 
+
+
+
+
+ const playSound = () => {
+          let sound = document.querySelector("audio");
+          sound.play()
+      };
