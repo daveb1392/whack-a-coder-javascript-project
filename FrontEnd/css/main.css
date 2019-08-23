@@ -43,12 +43,12 @@ body {
   right: 0;
   background: rgba(0, 0, 0, 0.3);
   z-index: 999;
-  opacity: 0.95;
+  opacity: 1;
 
 }
 
 .start-screen .splash-screen {
-  width: 500px;
+  width: 600px;
   padding: 10px;
   height: 450px;
   background: #ffd527;
@@ -162,7 +162,7 @@ body {
   bottom: -50px;
 }
 .coder {
-  background: url(../imgs/mani.svg) bottom center no-repeat;
+  /* background: url(../imgs/mani.svg) bottom center no-repeat; */
   background-size: 60%;
   position: absolute;
   top: 100%;
