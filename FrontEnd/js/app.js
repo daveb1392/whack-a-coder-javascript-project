@@ -2,24 +2,36 @@ const desks = document.querySelectorAll(".desk");
 const coders = document.querySelectorAll(".coder");
 const btnStart = document.querySelector("#button");
 const usernameForm = document.querySelector("#usernameForm");
+
+
+
+// const startScreen = document.querySelector(".start-screen");
+=======
 const inputField = document.querySelector("#username");
 btnStart.className = "btnStr";
+
 
 const showScore = document.querySelector(".show-score");
 let currentScore = document.querySelector(".class");
 let splashScreen = document.querySelector(".splash-screen");
 let eventListener = null;
 
+
+
 const board = document.querySelector("#leaderboard");
 const div = document.createElement("div");
 const ol = document.createElement("ol");
+
 
 let score = 0;
 let lastDesk;
 let timeUp = false;
 let increaseTime = 1;
 
+
+
 // let gameTimer = 2;
+
 
 const peep = () => {
   const time = randomTime(500, 1000);
@@ -34,7 +46,11 @@ const peep = () => {
 };
 
 const start = () => {
+
+
+
   gameTimer = 4;
+
   timeUp = false;
   peep();
 
@@ -53,7 +69,11 @@ const startTimer = (display, startTime) => {
     gameTimer = --gameTimer;
     startTime;
     if (gameTimer < 0) {
+
+
+
       let finalTime = (Date.now() - startTime) / 1000;
+
       console.log(finalTime);
       clearInterval(gameTimerShow);
       const finalScore = {
@@ -64,6 +84,11 @@ const startTimer = (display, startTime) => {
       document.querySelector(".start-screen").style.display = "block";
       getScores();
     }
+
+
+
+
+
   }, 1000);
 };
 
@@ -89,7 +114,13 @@ const randomDesk = desks => {
 };
 
 // function to POST username to the database
+
+
+
+
+
 const userFetchPost = finalScore => {
+
   fetch("http://localhost:3000/scores", {
     method: "POST",
     headers: {
@@ -99,7 +130,11 @@ const userFetchPost = finalScore => {
     body: JSON.stringify({
       game_params: {
         user: { username: finalScore.username },
+
+
+
         score: { time: finalScore.time }
+
       }
     })
   })
@@ -116,6 +151,8 @@ const getScores = () => {
 };
 
 const scoreIterator = scoreArray => {
+
+
   timeArray = scoreArray.map(score => score.time);
   // this method sorts the numbers into descending order, because javascript for SOME REASON doesn't like to just "sort" the numbers....
   sortedArray = timeArray.sort(function(a, b) {
@@ -135,6 +172,7 @@ const renderScore = score => {
   board.appendChild(div);
 };
 
+
 //create a timer on the event listner start.
 
 coders.forEach(coder => {
@@ -152,9 +190,12 @@ inputField.addEventListener("click", e => {
 usernameForm.addEventListener("submit", e => {
   e.preventDefault();
   document.querySelector(".start-screen").style.display = "none";
+
+
   eventListener = e;
   ol.innerHTML = "";
   // usernameForm.reset();
+
   start();
 
 });;
