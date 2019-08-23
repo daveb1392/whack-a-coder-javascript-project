@@ -25,7 +25,7 @@ let increaseTime = 1;
 // let gameTimer = 2;
 
 const peep = () => {
-  const time = randomTime(500, 1000);
+  const time = randomTime(400, 800);
   const desk = randomDesk(desks);
 
   desk.classList.add("up");
@@ -37,7 +37,7 @@ const peep = () => {
 };
 
 const start = () => {
-  gameTimer = 4;
+  gameTimer = 7;
 
   timeUp = false;
   peep();
@@ -66,8 +66,8 @@ const startTimer = (display, startTime) => {
         time: finalTime
       };
       userFetchPost(finalScore);
-      document.querySelector(".start-screen").style.display = "block";
       getScores();
+      document.querySelector(".start-screen").style.display = "block";
     }
   }, 1000);
 };
@@ -123,11 +123,14 @@ const getScores = () => {
 };
 
 const scoreIterator = scoreArray => {
-  timeArray = scoreArray.map(score => score.time);
+  // timeArray = scoreArray.map(score => score.time);
   // this method sorts the numbers into descending order, because javascript for SOME REASON doesn't like to just "sort" the numbers....
-  sortedArray = timeArray.sort(function(a, b) {
-    return b - a;
+
+  //this is the function to sort
+  sortedArray = scoreArray.sort(function(a, b) {
+    return b.score - a.score;
   });
+
   topTen = sortedArray.slice(0, 10);
   topTen.forEach(score => {
     renderScore(score);
@@ -136,7 +139,7 @@ const scoreIterator = scoreArray => {
 
 const renderScore = score => {
   const li = document.createElement("li");
-  li.innerText = score;
+  li.innerText = score.score + " : " + score.user;
   ol.appendChild(li);
   div.appendChild(ol);
   board.appendChild(div);
