@@ -4,8 +4,8 @@ class Score < ApplicationRecord
   def self.high_scores
     scores = Score.all
     scores.map do |score|
-      # byebug
       {score: score.time, user: score.user.username}
     end
   end
+  
 end

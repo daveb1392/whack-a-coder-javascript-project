@@ -25,6 +25,9 @@ let increaseTime = 1;
 // let gameTimer = 2;
 
 const peep = () => {
+  //these two numbers below signify the minimum and maximum time a face appears
+  //feel free to adjust for skill level
+  //recommended "hard" level is at 200, 300, "medium" level is 300, 600, "easy" level is 400, 800
   const time = randomTime(400, 800);
   const desk = randomDesk(desks);
 
@@ -37,6 +40,8 @@ const peep = () => {
 };
 
 const start = () => {
+  //gameTimer signifies the starting time allowed
+  //up to user discretion but 7 seconds is a good all rounder start time
   gameTimer = 7;
 
   timeUp = false;
@@ -59,14 +64,14 @@ const startTimer = (display, startTime) => {
     if (gameTimer < 0) {
       let finalTime = (Date.now() - startTime) / 1000;
 
+      //we console log the total time (score) to check scores are correct
       console.log(finalTime);
       clearInterval(gameTimerShow);
       const finalScore = {
         username: eventListener.target.username.value,
         time: finalTime
       };
-      userFetchPost(finalScore);
-      getScores();
+      userFetchPost(finalScore).then(() => getScores());
       document.querySelector(".start-screen").style.display = "block";
     }
   }, 1000);
@@ -96,7 +101,7 @@ const randomDesk = desks => {
 // function to POST username to the database
 
 const userFetchPost = finalScore => {
-  fetch("http://localhost:3000/scores", {
+  return fetch("http://localhost:3000/scores", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -109,11 +114,10 @@ const userFetchPost = finalScore => {
         score: { time: finalScore.time }
       }
     })
-  })
-    .then(resp => resp.json())
-    .then(console.log());
+  }).then(resp => resp.json());
 };
 
+//function to GET scores from database
 const getScores = () => {
   return fetch("http://localhost:3000/scores/")
     .then(resp => resp.json())
@@ -139,7 +143,7 @@ const scoreIterator = scoreArray => {
 
 const renderScore = score => {
   const li = document.createElement("li");
-  li.innerText = score.score + " : " + score.user;
+  li.innerText = score.user + " : " + score.score + " seconds";
   ol.appendChild(li);
   div.appendChild(ol);
   board.appendChild(div);
