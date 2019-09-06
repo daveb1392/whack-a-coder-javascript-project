@@ -28,7 +28,7 @@ const peep = () => {
   //these two numbers below signify the minimum and maximum time a face appears
   //feel free to adjust for skill level
   //recommended "hard" level is at 200, 300, "medium" level is 300, 600, "easy" level is 400, 800
-  const time = randomTime(200, 300);
+  const time = randomTime(300, 600);
   const desk = randomDesk(desks);
 
   desk.classList.add("up");
