@@ -6,18 +6,17 @@
 
 - Enter their username so that their points are saved
 - Can click start game
-- Have 3 lives - if they miss a mole they a lose a point
-- Get 1 point by hitting a mole
-- If their lives reach 0 then game ends
-- Their points are saved on a scoreboard
+- Gain 1 second by hitting a mole
+- If their time left reaches 0 then game ends
+- Their total time is saved on a scoreboard
 
 **Stretch**
 
-- If you hit a special mole then you gain a life
-- If you hit mani you lose all your lives
-- Put music/sounds effects in
-    - Music in background
-    - Sound effect when you hit the mole
+- If you hit a special mole then you gain a life X
+- If you hit mani you lose all your lives X
+- Put music/sounds effects in :)
+    - Music in background X
+    - Sound effect when you hit the mole :)
 
 By Wednesday
  - game already up and running
