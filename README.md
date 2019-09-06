@@ -1,5 +1,7 @@
 # Whack-A-Coder Game
+
 3 person team with Anil: https://github.com/slumfrog and David: https://github.com/daveb1392
+
 Hello Everyone, welcome to our Flatiron Version of Whack-A-Mole!
 
 To run the game
